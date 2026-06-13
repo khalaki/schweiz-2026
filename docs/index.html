@@ -97,6 +97,9 @@
     ul.compact li { margin-bottom: 6px; }
     .priority-critical { color: var(--danger); font-weight: 600; }
     .priority-high { color: var(--warning); font-weight: 500; }
+    .budget-row { display: flex; align-items: center; gap: 8px; font-size: 0.8125rem; margin-bottom: 6px; }
+    .budget-bar { flex: 1; height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
+    .budget-fill { height: 100%; border-radius: 4px; }
     footer { margin-top: 40px; text-align: center; color: var(--muted); font-size: 0.75rem; }
     details { margin-bottom: 16px; font-size: 0.875rem; }
     summary { cursor: pointer; font-weight: 600; margin-bottom: 8px; }
@@ -311,6 +314,55 @@
             <li><strong>11.07:</strong> спуск, авто з Arolla; після обіду — Luzern/Zürich для короткого дня 12.07.</li>
           </ul>
         </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Бюджет · орієнт. (3 особи)</h2>
+      <p class="subtitle">Пробіг ~3000–3200 км · F11 дизель ~7 l/100 km ≈ 215 l · курс CHF≈€1,05 — округлено в €</p>
+      <div class="stats" style="margin-bottom:20px">
+        <div class="stat"><div class="stat-label">Група</div><div class="stat-value">€4300–4700</div></div>
+        <div class="stat"><div class="stat-label">На особу</div><div class="stat-value">€1430–1570</div></div>
+        <div class="stat"><div class="stat-label">Паливо</div><div class="stat-value">€340–380</div></div>
+        <div class="stat"><div class="stat-label">Житло</div><div class="stat-value">€1740+</div></div>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">Розбивка · група <span class="pill success" style="font-size:0.75rem">€4300–4700</span></div>
+          <div class="card-body">
+            <div class="budget-row"><span style="width:168px">Апартаменти Naters</span><div class="budget-bar"><div class="budget-fill" style="width:38%;background:var(--accent)"></div></div><span>€1600</span></div>
+            <div class="budget-row"><span style="width:168px">Продукти ~11 днів</span><div class="budget-bar"><div class="budget-fill" style="width:20%;background:#16a34a"></div></div><span>€800–900</span></div>
+            <div class="budget-row"><span style="width:168px">Хатини HB ×3</span><div class="budget-bar"><div class="budget-fill" style="width:14%;background:#2563eb"></div></div><span>€520–650</span></div>
+            <div class="budget-row"><span style="width:168px">Канатки / поїзди</span><div class="budget-bar"><div class="budget-fill" style="width:10%;background:#9333ea"></div></div><span>€400–450</span></div>
+            <div class="budget-row"><span style="width:168px">Дизель</span><div class="budget-bar"><div class="budget-fill" style="width:8%;background:#ea580c"></div></div><span>€340–380</span></div>
+            <div class="budget-row"><span style="width:168px">Віньєтки CH/AT/CZ</span><div class="budget-bar"><div class="budget-fill" style="width:2%;background:#6b7280"></div></div><span>~€70</span></div>
+            <div class="budget-row"><span style="width:168px">Сублімати (трек)</span><div class="budget-bar"><div class="budget-fill" style="width:4%;background:#16a34a"></div></div><span>~€180</span></div>
+            <div class="budget-row"><span style="width:168px">Ліхтенштейн 30.06</span><div class="budget-bar"><div class="budget-fill" style="width:3%;background:#6b7280"></div></div><span>€142</span></div>
+            <div class="budget-row"><span style="width:168px">Нічліг 11.07</span><div class="budget-bar"><div class="budget-fill" style="width:3%;background:#6b7280"></div></div><span>€100–120</span></div>
+            <div class="budget-row"><span style="width:168px">Паркінг + дрібниці</span><div class="budget-bar"><div class="budget-fill" style="width:2%;background:#6b7280"></div></div><span>~€80</span></div>
+            <p class="subtitle" style="margin-top:12px;font-size:0.8125rem">
+              Хатини: Europahütte ~€250 + Zermatt dorm ~€160–190 + Cabane des Dix ~€270–300 (HB, 3 ос.).<br>
+              Паливо: full tank PL → дотанковка AT (~€1,55/l) → CH мінімально (~CHF 1,85–1,95/l).
+            </p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">Як зекономити</div>
+          <div class="card-body">
+            <ul class="compact">
+              <li><strong>Канатки (~€400–450):</strong> частину набору пішки (Belalp, Bettmerhorn — якщо сильні); Gornergrat лише зранку (Morning ticket); 5-Seenweg замість дня 2 у Церматі; Lötschental без канатки вгору, якщо готові на +600 m.</li>
+              <li><strong>Їжа:</strong> Denner/Aldi у Бригу (~20 CHF/день/особа); сублімати з Польщі (LyoFood/Trek'n Eat, 35–45 PLN/порція); в хатинах лише HB, не FP.</li>
+              <li><strong>Дизель:</strong> не заправляти в CH, крім крайності; максимум літрів в AT перед перевалом.</li>
+              <li><strong>Ночівлі:</strong> Hotel Bahnhof dorm, не приват у Zermatt; 11.07 — Andermatt/Luzern suburb, не Zürich центр.</li>
+              <li><strong>Цермат:</strong> 1 день замість 2 (−Sunnegga/5-Seenweg); паркінг Täsch 16 CHF/доба — не затягувати.</li>
+              <li><strong>Жорсткий сценарій:</strong> без Gornergrat (−€60–80/особа) + менше канаток → <strong>~€3800–4000</strong> на 3 (~€1270–1330/особа).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="callout" style="margin-top:0">
+        Віньєтки: Швейцарія <strong>40 CHF</strong> (річна, іншої нема) + Австрія 10 днів ~€12,5 + Чехія 10 днів ~€12.
+        Готівка CHF: ~€250/особа на хатини + дрібні канатки/паркінги.
       </div>
     </section>
 
