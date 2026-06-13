@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Швейцарія · Вале · Naters — Zermatt — Arolla · 30.06–12.07.2026 · група 3">
+  <meta property="og:title" content="Швейцарія · Wallis 2026">
+  <meta property="og:description" content="Furka · Belalp · Aletsch · Zermatt · Haute Route фінал · 3 особи">
+  <title>Швейцарія · Wallis 2026</title>
+  <style>
+    :root {
+      --bg: #f8f9fa; --surface: #fff; --text: #1a1a1a; --muted: #5c5c5c;
+      --border: #e0e0e0; --accent: #0d9488; --accent-soft: #ccfbf1;
+      --success: #15803d; --success-soft: #dcfce7;
+      --warning: #b45309; --warning-soft: #fef3c7;
+      --info-soft: #e0f2fe; --danger: #dc2626;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #141414; --surface: #1c1c1c; --text: #e4e4e4; --muted: #a0a0a0;
+        --border: #333; --accent: #2dd4bf; --accent-soft: #134e4a;
+        --success: #4ade80; --success-soft: #14532d;
+        --warning: #fbbf24; --warning-soft: #451a03;
+        --info-soft: #0c4a6e;
+      }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.5;
+      padding: 24px 16px 48px;
+    }
+    .wrap { max-width: 900px; margin: 0 auto; }
+    h1 { font-size: 1.75rem; font-weight: 600; margin-bottom: 8px; }
+    h2 { font-size: 1.125rem; font-weight: 600; margin-bottom: 12px; }
+    h3 { font-size: 0.9375rem; font-weight: 600; margin-bottom: 8px; }
+    .subtitle { color: var(--muted); font-size: 0.9375rem; margin-bottom: 16px; }
+    .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+    .pill {
+      font-size: 0.8125rem; padding: 4px 10px; border-radius: 999px;
+      border: 1px solid var(--border); background: var(--surface);
+    }
+    .pill.accent { background: var(--accent-soft); border-color: transparent; color: var(--accent); }
+    .pill.success { background: var(--success-soft); border-color: transparent; color: var(--success); }
+    .pill.warning { background: var(--warning-soft); border-color: transparent; color: var(--warning); }
+    .callout {
+      padding: 14px 16px; border-radius: 8px; border: 1px solid var(--border);
+      background: var(--info-soft); font-size: 0.9375rem; margin-bottom: 24px;
+    }
+    .callout.warn { background: var(--warning-soft); }
+    .callout.danger { background: #fee2e2; border-color: #fecaca; }
+    @media (prefers-color-scheme: dark) {
+      .callout.danger { background: #450a0a; border-color: #7f1d1d; }
+    }
+    .stats {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 12px; margin-bottom: 28px;
+    }
+    .stat {
+      padding: 14px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface);
+    }
+    .stat-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.03em; }
+    .stat-value { font-size: 1.25rem; font-weight: 600; margin-top: 4px; }
+    section { margin-bottom: 32px; }
+    .card {
+      border: 1px solid var(--border); border-radius: 8px; background: var(--surface);
+      overflow: hidden; margin-bottom: 16px;
+    }
+    .card-header {
+      padding: 12px 16px; border-bottom: 1px solid var(--border);
+      font-weight: 600; font-size: 0.9375rem;
+      display: flex; justify-content: space-between; align-items: center; gap: 8px;
+    }
+    .card-body { padding: 16px; }
+    .timeline {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px;
+    }
+    .day-card {
+      padding: 10px; border-radius: 6px; border: 1px solid var(--border); font-size: 0.8125rem;
+    }
+    .day-card.trek { background: var(--accent-soft); }
+    .day-card.hut { background: var(--success-soft); }
+    .day-card.travel { opacity: 0.9; }
+    .day-card .label { font-weight: 600; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+    .day-card.travel .dot { background: var(--muted); }
+    .day-card.hut .dot { background: var(--success); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.8125rem; }
+    th, td { padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--border); vertical-align: top; }
+    th { color: var(--muted); font-weight: 500; font-size: 0.75rem; }
+    tr:last-child td { border-bottom: none; }
+    tr.critical td:first-child { border-left: 3px solid var(--danger); }
+    tr.highlight td:first-child { border-left: 3px solid var(--accent); }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 640px) { .grid-2 { grid-template-columns: 1fr; } }
+    ul.compact { padding-left: 18px; font-size: 0.875rem; }
+    ul.compact li { margin-bottom: 6px; }
+    .priority-critical { color: var(--danger); font-weight: 600; }
+    .priority-high { color: var(--warning); font-weight: 500; }
+    footer { margin-top: 40px; text-align: center; color: var(--muted); font-size: 0.75rem; }
+    details { margin-bottom: 16px; font-size: 0.875rem; }
+    summary { cursor: pointer; font-weight: 600; margin-bottom: 8px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Швейцарія · Wallis · Aletsch & Zermatt</h1>
+      <p class="subtitle">Kraków → Liechtenstein → Furka → Naters (база) → Haute Route фінал → Arolla → Kraków · 3 особи · авто</p>
+      <div class="pills">
+        <span class="pill accent">30.06 – 12.07.2026</span>
+        <span class="pill success">Belalp · Aletsch UNESCO</span>
+        <span class="pill warning">T2–T3 · грози після обіду</span>
+        <span class="pill">хатини + 1 ніч намет</span>
+      </div>
+    </header>
+
+    <div class="callout">
+      База <strong>Naters / Belalp</strong> — канатка буквально над хатою. Тиждень денних хайків (Алеч, Цермат),
+      потім 4 дні хатини + легальний кемпінг на <strong>Camping Arolla (~1950 m)</strong>.
+      Дикий кемп у зоні Aletsch UNESCO — <strong>заборонений</strong>; ніч у наметі спланована в Arolla.
+    </div>
+
+    <div class="callout warn">
+      Липень у Вале = +30 °C у долині Рони і ~0…+5 °C зранку на 2800–3000 m. Мембрана обовʼязкова:
+      грозові комірки майже щодня після обіду. Старт ранній на гребені.
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="stat-label">Група</div><div class="stat-value">3</div></div>
+      <div class="stat"><div class="stat-label">Днів</div><div class="stat-value">13</div></div>
+      <div class="stat"><div class="stat-label">Трек днів</div><div class="stat-value">9+</div></div>
+      <div class="stat"><div class="stat-label">База Naters</div><div class="stat-value">1–8.07</div></div>
+      <div class="stat"><div class="stat-label">Хатини</div><div class="stat-value">Europahütte</div></div>
+      <div class="stat"><div class="stat-label">Намет</div><div class="stat-value">Arolla</div></div>
+    </div>
+
+    <section>
+      <h2>Календар</h2>
+      <div class="timeline">
+        <div class="day-card travel"><div class="label"><span class="dot"></span>30.06</div>Kraków → Liechtenstein · ~1050 км · 10–11 год</div>
+        <div class="day-card travel"><div class="label"><span class="dot"></span>1.07</div>Liechtenstein → Furka → Naters · ~230 км · Furka Pass</div>
+        <div class="day-card trek"><div class="label"><span class="dot"></span>2–7.07</div>База Naters · денні хайки · Belalp / Zermatt / Lötschental</div>
+        <div class="day-card trek"><div class="label"><span class="dot"></span>відпоч.</div>Brigerbad терми + замок Stockalper (Brig)</div>
+        <div class="day-card hut"><div class="label"><span class="dot"></span>8.07</div>Randa → Europahütte · ніч у хатині</div>
+        <div class="day-card trek"><div class="label"><span class="dot"></span>9.07</div>Europaweg → Zermatt · Charles Kuonen · 7 год</div>
+        <div class="day-card trek"><div class="label"><span class="dot"></span>10.07</div>Zermatt → Arolla · Camping Arolla · намет</div>
+        <div class="day-card trek"><div class="label"><span class="dot"></span>11.07</div>Радіалка Arolla · старт додому ввечері</div>
+        <div class="day-card travel"><div class="label"><span class="dot"></span>12.07</div>До Kraków · ~9 год (з ночівкою 11.07)</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="card">
+        <div class="card-header">Дорога · 30.06 – 1.07</div>
+        <div class="card-body">
+          <h3>30.06 · Kraków → Liechtenstein</h3>
+          <ul class="compact">
+            <li>~1050 км, 10–11 год. Найшвидше: Чехія → Австрія (Brno → Wien → Salzburg → Innsbruck → Feldkirch).</li>
+            <li>Кава в горах: канатка <strong>Malbun</strong> або <strong>Gaflei</strong> + короткий трейл на Fürstensteig — видовий, без довгого набору.</li>
+          </ul>
+          <h3 style="margin-top:16px">1.07 · Liechtenstein → Naters</h3>
+          <ul class="compact">
+            <li>~230 км, 4–5 год чистої їзди. Chur → Andermatt → Realp → <strong>Furka Pass</strong> → Gletsch → Naters.</li>
+            <li>Перевал відкритий у липні — безпечний план.</li>
+            <li><strong>Belvédère</strong> + Ронський льодовик + льодова печера (~9 CHF вхід).</li>
+            <li>Опційно з Gletsch: Grimsel (+15 хв) заради видів на водосховища — і назад.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="card">
+        <div class="card-header">Тиждень у Naters (1–8.07) · денні хайки</div>
+        <div class="card-body" style="padding:0; overflow-x:auto">
+          <table>
+            <thead>
+              <tr><th>#</th><th>Маршрут</th><th>Час</th><th>Градація</th><th>Нотатки</th></tr>
+            </thead>
+            <tbody>
+              <tr class="highlight">
+                <td>1</td>
+                <td><strong>Belalp → Hängebrücke → Riederalp</strong></td>
+                <td>5–6 год</td>
+                <td>T2</td>
+                <td>Канатка Blatten–Belalp. Підвісний міст Massa, язик Алеча. Назад: канатка + поштовий автобус.</td>
+              </tr>
+              <tr class="highlight">
+                <td>2</td>
+                <td><strong>UNESCO-Höhenweg: Bettmerhorn → Eggishorn</strong></td>
+                <td>день</td>
+                <td>T3</td>
+                <td>Найкращі види на Алеч. Камʼяниста гребінь, місцями руки — без страховки. Канатки Betten/Fiesch.</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td><strong>Zermatt день 1</strong> Gornergrat → Riffelsee → спуск</td>
+                <td>день</td>
+                <td>T1–T2</td>
+                <td>Авто в Täsch (паркінг ~16 CHF/доба), поїзд у Цермат. Riffelsee до 9:00 — дзеркальне озеро.</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td><strong>Zermatt день 2</strong> (опц.) 5-Seenweg з Sunnegga</td>
+                <td>легкий</td>
+                <td>T1–T2</td>
+                <td>Маттергорн у пʼяти озерах.</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td><strong>Lötschental Höhenweg</strong> Lauchernalp → Fafleralp</td>
+                <td>день</td>
+                <td>T2</td>
+                <td>«Найгарніша долина Вале», 30 хв від дому, без натовпів.</td>
+              </tr>
+              <tr>
+                <td>відп.</td>
+                <td><strong>Brigerbad</strong> + замок <strong>Stockalper</strong> (Brig)</td>
+                <td>—</td>
+                <td>—</td>
+                <td>Терми 10 хв від хати. Відпочинковий день між активними.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="card">
+        <div class="card-header">Трек 8–11.07 · хатини + намет</div>
+        <div class="card-body" style="padding:0; overflow-x:auto">
+          <table>
+            <thead>
+              <tr><th>Дата</th><th>Маршрут</th><th>Набір</th><th>Градація</th><th>Ночівля</th><th>CHF ориент.</th></tr>
+            </thead>
+            <tbody>
+              <tr class="critical">
+                <td>8.07</td>
+                <td>Виїзд з апартаментів → Randa (35 хв). Randa → Europahütte</td>
+                <td>~1100 m · 3 год</td>
+                <td>T2</td>
+                <td><strong>Europahütte</strong> HB</td>
+                <td>~80–85</td>
+              </tr>
+              <tr>
+                <td>9.07</td>
+                <td>Charles Kuonen (494 m міст) → Europaweg → Täschalp → Tufteren → Zermatt</td>
+                <td>—</td>
+                <td>T2–T3</td>
+                <td>Dorm Zermatt <em>або</em> Berggasthaus Trift</td>
+                <td>50–60 / +2 год вгору</td>
+              </tr>
+              <tr class="highlight">
+                <td>10.07</td>
+                <td>Спуск, поїзд Randa, авто → Arolla (~1,5 год)</td>
+                <td>—</td>
+                <td>—</td>
+                <td><strong>Camping Arolla</strong> (~1950 m)</td>
+                <td>намет</td>
+              </tr>
+              <tr>
+                <td>11.07</td>
+                <td>Радіалка: Pas de Chèvres → Cabane des Dix <em>або</em> Lac Bleu + язик Arolla</td>
+                <td>—</td>
+                <td>T3 / легший</td>
+                <td>Старт додому → Luzern/Zürich (~3–3,5 год)</td>
+                <td>дешевий нічліг</td>
+              </tr>
+              <tr>
+                <td>12.07</td>
+                <td>Kraków (~9 год замість 13)</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="callout danger" style="margin-top:12px">
+        <strong>8.07 Europahütte — бронювати вже зараз.</strong> Липень розбирають. Півпансіон, тераса з видом на Weisshorn — одна з найдушевніших хатин на Haute Route.
+      </div>
+    </section>
+
+    <section class="grid-2">
+      <div class="card">
+        <div class="card-header">Бронювання · пріоритет</div>
+        <div class="card-body" style="padding:0">
+          <table>
+            <thead><tr><th>Що</th><th>Дата</th><th>Пріоритет</th></tr></thead>
+            <tbody>
+              <tr><td>Europahütte</td><td>8.07</td><td class="priority-critical">Критичний · зараз</td></tr>
+              <tr><td>Camping Arolla</td><td>10.07</td><td class="priority-high">Високий</td></tr>
+              <tr><td>Hotel Bahnhof Zermatt</td><td>9.07</td><td>Середній (альт. Trift)</td></tr>
+              <tr><td>Паркінг Täsch</td><td>дні Цермат</td><td>~16 CHF/доба</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">Радіалка Arolla (11.07)</div>
+        <div class="card-body">
+          <ul class="compact">
+            <li><strong>Складніший:</strong> Pas de Chèvres → Cabane des Dix — Mont Blanc de Cheilon; металеві сходи на перевалі (T3, виглядають страшніше ніж є).</li>
+            <li><strong>Легший:</strong> Lac Bleu + язик льодовика Arolla.</li>
+            <li>После обіду — виїзд, догнати Luzern/Zürich для короткого дня 12.07.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Спорядження · базовий набір на особу</h2>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">Верх · шари</div>
+          <div class="card-body">
+            <ul class="compact">
+              <li>2–3 синтетика/меринос (не бавовна)</li>
+              <li>Легкий фліс (grid / R1)</li>
+              <li>Пухова/синтетика ~200–300 g — вечори, хатини, <strong>Arolla обовʼязково</strong></li>
+              <li><strong>Мембрана must</strong> — грози, Bettmerhorn–Eggishorn без схову</li>
+              <li>Шапка + баф + легкі рукавички (Pas de Chèvres, металеві сходи)</li>
+              <li>Кепка, окуляри cat. 3, SPF 50</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">Низ · ноги</div>
+          <div class="card-body">
+            <ul class="compact">
+              <li>Трек штани / софтшел + шорти</li>
+              <li>Термоштани на ніч у наметі</li>
+              <li>Дощові штани — легкі, якщо є</li>
+              <li>Черевики mid або trail з протектором (T2–T3, не альп-бути)</li>
+              <li>3–4 шкарпетки + суха «свята» пара</li>
+              <li>Сандалі/крокси для хатин і кемпінгу</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="grid-2" style="margin-top:16px">
+        <div class="card">
+          <div class="card-header">Хатини</div>
+          <div class="card-body">
+            <ul class="compact">
+              <li><strong>Sleeping bag liner</strong> — формально обовʼязковий у CH хатинах (~100 g)</li>
+              <li>Беруші</li>
+              <li>Налобний ліхтар (світло гасять ~22:00)</li>
+              <li><strong>Палиці</strong> — спуск Randa, Höhbalmen; особливо без досвіду довгих спусків</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">Намет · Arolla</div>
+          <div class="card-body">
+            <ul class="compact">
+              <li>Спальник comfort <strong>0…+5 °C</strong> (ніч на ~1950 m)</li>
+              <li>Camping Arolla — один з найвищих кемпінгів Європи, 360° льодовики</li>
+              <li>Дикий кемп у Aletsch UNESCO — штраф, не планувати</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <details>
+      <summary>Логістика · авто</summary>
+      <ul class="compact" style="margin-top:8px">
+        <li>30.06: довгий трансфер, ночівка Liechtenstein або по дорозі.</li>
+        <li>1.07: Furka Pass — Belvédère, льодова печера, опц. Grimsel.</li>
+        <li>Цермат: лише Täsch (поїзд), авто не в село.</li>
+        <li>8.07: паркінг Randa, 10.07: знову Randa → авто → Arolla.</li>
+        <li>11.07: розумний виїзд — ночівка центральна Швейцарія → 12.07 ~9 год до Kraków.</li>
+      </ul>
+    </details>
+
+    <footer>Schweiz Wallis 2026 · група 3 · Naters — Zermatt — Arolla</footer>
+  </div>
+</body>
+</html>
